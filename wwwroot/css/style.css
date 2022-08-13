@@ -1,0 +1,73 @@
+.container {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 50px;
+}
+
+.wallcontainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.validation {
+    color: red;
+    font-weight: bold;
+}
+
+.logout {
+    margin-top: 20px;
+    margin-right: 20px;
+    width: 80px;
+    background-color: blue;
+    color: white;
+    font-weight: bold;
+}
+
+.right {
+    margin-left: 30px;
+}
+
+.btn {
+    margin-left: 270px;
+    background-color: blue;
+    color: white;
+    font-weight: bold;
+    height: 30px;
+    box-shadow: 2px 2px black;
+}
+
+.messagecontainer {
+    margin-left: 30px;
+    border-bottom: 2px solid black;
+}
+
+.msgbody {
+    margin-left: 10px;
+}
+
+.bodycontainer {
+    display: flex;
+}
+
+.delete {
+    margin-top: 10px;
+    margin-left: 20px;
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    box-shadow: 2px 2px black;
+}
+
+.commentcontainer {
+    margin-left: 30px;
+    margin-top: -10px;
+}
+
+.commentbtn {
+    margin-left: 425px;
+    margin-bottom: 20px;
+    background-color: green;
+    color: white;
+    font-weight: bold;
+    box-shadow: 2px 2px black;
+}

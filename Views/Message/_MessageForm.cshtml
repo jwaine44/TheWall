@@ -1,0 +1,16 @@
+@model Message
+
+<link rel="stylesheet" href="~/css/style.css">
+
+<form asp-controller = "Message" asp-action = "Create" method = "POST">
+    <div class = "right">
+        <h3><label asp-for = "Msg"></label></h3>
+        <div>
+            <textarea asp-for = "Msg" cols = "50" rows = "5"></textarea>
+        </div>
+        <div>
+            <span asp-validation-for = "Msg" class = "validation"></span>
+        </div>
+        <button class = "btn">Post a message</button>
+    </div>
+</form>

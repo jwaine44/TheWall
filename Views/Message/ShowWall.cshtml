@@ -1,0 +1,57 @@
+@model List<Message>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Wall</title>
+    <link rel="stylesheet" href="~/css/style.css">
+</head>
+<body>
+    <div class="wallcontainer">
+        <h3>CodingDojo Wall</h3>
+        <h3>Welcome @Context.Session.GetString("Name")</h3>
+        <form asp-controller = "User" asp-action = "Logout" method = "POST"><button class = "logout">Log off</button></form>
+    </div>
+    <hr>
+    @{
+        Message newMessage = new Message();
+    }
+    <partial name = "_MessageForm" model = "@newMessage"></partial>
+    @foreach(Message msg in Model)
+    {   
+        if(msg.Poster != null)
+        {
+            <div class="messagecontainer">
+                <h4>@msg.Poster.FullName() - @msg.CreatedAt.ToShortDateString()</h4>
+                <div class="bodycontainer">
+                    <p class = "msgbody">@msg.Msg</p>
+                    @if(@msg.UserId == Context.Session.GetInt32("uid"))
+                    {
+                        <form asp-controller = "Message" asp-action = "Delete" asp-route-deletedMessageId = "@msg.MessageId" method = "POST">
+                            <button class = "delete">Delete</button>
+                        </form>
+                    }
+                </div>
+                <div class="commentcontainer">
+                    @foreach(UserMessageComment comm in msg.Comments)
+                    {
+                        if(comm.User != null)
+                        {
+                            <h5>@comm.User.FullName() - @comm.UpdatedAt.ToShortDateString()</h5>
+                            <p>@comm.Comment</p>
+                        }
+                    }
+                    @{
+                        UserMessageComment newComment = new UserMessageComment();
+                    }
+                    <form asp-controller = "Message" asp-action = "Comment" asp-route-msgId = "@msg.MessageId" method = "POST">
+                        <partial name = "_CommentForm" model = "@newComment"></partial>
+                    </form>
+                </div>
+            </div>
+        }
+    }
+</body>
+</html>
